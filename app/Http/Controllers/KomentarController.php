@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Komentar;
+use Validator;
 
 class KomentarController extends Controller
 {
@@ -14,7 +15,7 @@ class KomentarController extends Controller
      */
     public function index()
     {
-        return json_encode(array('result'=>Komentar::all()));
+        return response()->json(['result' => Komentar::all()]);
     }
 
     /**
@@ -24,7 +25,7 @@ class KomentarController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +36,25 @@ class KomentarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'id_pelanggan' => 'required',
+            'isi_komentar' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menambahkan data'
+            ]);
+        } else {
+            Komentar::create([
+                'id_pelanggan' => $request->id_pelanggan,
+                'isi_komentar' => $request->isi_komentar,
+            ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil menambahkan data'
+            ]);
+        }
     }
 
     /**

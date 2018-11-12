@@ -15,7 +15,9 @@ class HidanganController extends Controller
      */
     public function index()
     {
-        return json_encode(array('result'=>Hidangan::all()));
+        return response()->json([
+            'result' => Hidangan::all()
+        ]);
     }
 
     /**
@@ -47,7 +49,8 @@ class HidanganController extends Controller
      */
     public function show($id)
     {
-        //
+        $hidangan = Hidangan::where('kategori_hidangan',$id)->get();
+        return response()->json(['result' => $hidangan]);
     }
 
     /**

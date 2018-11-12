@@ -14,14 +14,10 @@ Route::resource('hidangan', 'HidanganController');
 Route::resource('komentar', 'KomentarController');
 Route::group(['prefix'=>'pelanggan'], function(){
 	Route::resource('', 'PelangganController');
+	// http://jhonarendra/progmob-api/public/hidangan/Burger
 	Route::post('login', 'PelangganController@login');
 	Route::post('register', 'PelangganController@register');
 });
-// Route::get('login', 'PelangganController@showLoginForm');
-// Route::get('logout', 'PelangganController@logout');
-// Route::get('register', 'PelangganController@showRegisterForm');
-// Route::post('register', 'PelangganController@register');
-
 
 Route::get('/', function () {
     return view('welcome');

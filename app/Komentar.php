@@ -12,5 +12,9 @@ class Komentar extends Model
      * @var array
      */
     protected $table = 'tb_komentar';
+
+    protected $fillable = [
+        'id_pelanggan', 'isi_komentar'
+    ];
     
 }

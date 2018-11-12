@@ -68,7 +68,9 @@ class PelangganController extends Controller
 
     public function index()
     {
-        return json_encode(array('result'=>Pelanggan::all()));
+    	return response()->json([
+            'result' => Pelanggan::all()
+        ]);
     }
 
     /**
