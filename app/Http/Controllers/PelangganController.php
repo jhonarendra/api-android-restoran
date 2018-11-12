@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pelanggan;
+use Validator;
 
 
 class PelangganController extends Controller
@@ -13,6 +14,58 @@ class PelangganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function login(Request $request){
+    	$username_pelanggan = $request->username_pelanggan;
+    	$password_pelanggan = md5($request->password_pelanggan);
+
+    	$row = Pelanggan::where('username_pelanggan', $username_pelanggan)->where('password_pelanggan', $password_pelanggan)->exists();
+    	$rows = $row['exists'];
+
+    	$message = null;
+    	$success = null;
+    	if($row){
+    		$message = 'Login berhasil';
+    		$success = true;
+    	} else {
+    		$message = 'Login gagal';
+    		$success = false;
+    	}
+
+		return response()->json([
+		    'success' => $success,
+		    'message' => $message
+		]);
+    }
+
+    public function register(Request $request){
+    	$validator = Validator::make($request->all(),[
+            'nama_pelanggan' => 'required',
+            'email_pelanggan' => 'required|unique:tb_pelanggan',
+            'username_pelanggan' => 'required|unique:tb_pelanggan',
+            'password_pelanggan' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menambahkan data'
+            ]);
+        } else {
+        	Pelanggan::create([
+        	    'nama_pelanggan' => $request->nama_pelanggan,
+        	    'email_pelanggan' => $request->email_pelanggan,
+        	    'username_pelanggan' => $request->username_pelanggan,
+        	    'password_pelanggan' => md5($request->password_pelanggan),
+        	]);
+        	return response()->json([
+                'success' => true,
+                'message' => 'Berhasil menambahkan data'
+            ]);
+        }
+
+    }
+
+
     public function index()
     {
         return json_encode(array('result'=>Pelanggan::all()));

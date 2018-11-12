@@ -50,6 +50,8 @@ php artisan serve --host 0.0.0.0
 
 ## Screenshot
 ![](https://raw.githubusercontent.com/jhonarendra/api-android-restoran/master/screenshot/img1.png)
+![](https://raw.githubusercontent.com/jhonarendra/api-android-restoran/master/screenshot/img2.png)
+![](https://raw.githubusercontent.com/jhonarendra/api-android-restoran/master/screenshot/img3.png)
 
 ## Progmob 15
 |Nim	    |Nama				|

@@ -12,7 +12,17 @@
 */
 Route::resource('hidangan', 'HidanganController');
 Route::resource('komentar', 'KomentarController');
-Route::resource('pelanggan', 'PelangganController');
+Route::group(['prefix'=>'pelanggan'], function(){
+	Route::resource('', 'PelangganController');
+	Route::post('login', 'PelangganController@login');
+	Route::post('register', 'PelangganController@register');
+});
+// Route::get('login', 'PelangganController@showLoginForm');
+// Route::get('logout', 'PelangganController@logout');
+// Route::get('register', 'PelangganController@showRegisterForm');
+// Route::post('register', 'PelangganController@register');
+
+
 Route::get('/', function () {
     return view('welcome');
 });

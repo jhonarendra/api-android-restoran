@@ -11,6 +11,9 @@ class Pelanggan extends Model
      *
      * @var array
      */
+    protected $fillable = [
+        'nama_pelanggan', 'email_pelanggan', 'username_pelanggan', 'password_pelanggan',
+    ];
     protected $table = 'tb_pelanggan';
     
 }
