@@ -22,7 +22,8 @@ class CreateTbHidanganTable extends Migration
             $table->string('foto_hidangan');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE tb_hidangan MODIFY kategori_hidangan ENUM('Burger', 'Salad', 'Dessert', 'Minuman') DEFAULT NULL;");
+        DB::statement("ALTER TABLE tb_hidangan MODIFY deskripsi_hidangan TEXT");
+        DB::statement("ALTER TABLE tb_hidangan MODIFY kategori_hidangan ENUM('Burger', 'Salad', 'Dessert', 'Minuman', 'Breakfast') DEFAULT NULL;");
         DB::statement("ALTER TABLE tb_hidangan MODIFY foto_hidangan VARCHAR(255) DEFAULT NULL;");
     }
 

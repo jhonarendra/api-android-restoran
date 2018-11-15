@@ -11,6 +11,9 @@
 |
 */
 Route::resource('hidangan', 'HidanganController');
+Route::get('hidangan/kategori/{id}', 'HidanganController@showKategori');
+Route::get('hidangan/kategori/{id}/limit', 'HidanganController@showLimitKategori');
+
 Route::resource('komentar', 'KomentarController');
 Route::group(['prefix'=>'pelanggan'], function(){
 	Route::resource('', 'PelangganController');
