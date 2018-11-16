@@ -21,19 +21,24 @@ class PelangganController extends Controller
     	$row = Pelanggan::where('username_pelanggan', $username_pelanggan)->where('password_pelanggan', $password_pelanggan)->exists();
     	$rows = $row['exists'];
 
-    	$message = null;
-    	$success = null;
+        $pelanggan = null;
+        
     	if($row){
-    		$message = 'Login berhasil';
     		$success = true;
+            $data = Pelanggan::where('username_pelanggan', $username_pelanggan)->where('password_pelanggan', $password_pelanggan)->get();
+
+            $i = 0;
+            foreach ($data as $key) {
+                $pelanggan[0] = $key;
+                $i++;
+            }
     	} else {
-    		$message = 'Login gagal';
     		$success = false;
     	}
 
 		return response()->json([
 		    'success' => $success,
-		    'message' => $message
+		    'pelanggan' => $pelanggan
 		]);
     }
 
