@@ -15,7 +15,7 @@ class KomentarController extends Controller
      */
     public function index()
     {
-        return response()->json(['result' => Komentar::all()]);
+        return response()->json(['komentar' => Komentar::all()]);
     }
 
     /**
@@ -42,8 +42,7 @@ class KomentarController extends Controller
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
-                'message' => 'Gagal menambahkan data'
+                'success' => false
             ]);
         } else {
             Komentar::create([
@@ -51,8 +50,7 @@ class KomentarController extends Controller
                 'isi_komentar' => $request->isi_komentar,
             ]);
             return response()->json([
-                'success' => true,
-                'message' => 'Berhasil menambahkan data'
+                'success' => true
             ]);
         }
     }
@@ -65,7 +63,7 @@ class KomentarController extends Controller
      */
     public function show($id)
     {
-        return Komentar::where('id_komentar',$id)->get();
+        return response()->json(['komentar' => Komentar::where('id_pelanggan',$id)->get()]);
     }
 
     /**
