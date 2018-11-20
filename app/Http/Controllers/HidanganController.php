@@ -16,6 +16,12 @@ class HidanganController extends Controller
     public function index()
     {
         return response()->json([
+            'result' => Hidangan::all()
+        ]);
+    }
+
+    public function menuLimit(){
+        return response()->json([
             'result' => Hidangan::limit(5)->get()
         ]);
     }
