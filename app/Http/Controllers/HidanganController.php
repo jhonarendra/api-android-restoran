@@ -16,13 +16,13 @@ class HidanganController extends Controller
     public function index()
     {
         return response()->json([
-            'result' => Hidangan::all()
+            'hidangan' => Hidangan::all()
         ]);
     }
 
     public function menuLimit(){
         return response()->json([
-            'result' => Hidangan::limit(5)->get()
+            'hidangan' => Hidangan::limit(5)->get()
         ]);
     }
 
@@ -56,17 +56,17 @@ class HidanganController extends Controller
     public function show($id)
     {
         $hidangan = Hidangan::where('id_hidangan',$id)->get();
-        return response()->json(['result' => $hidangan]);
+        return response()->json(['hidangan' => $hidangan]);
     }
     public function showKategori($id)
     {
         $hidangan = Hidangan::where('kategori_hidangan',$id)->get();
-        return response()->json(['result' => $hidangan]);
+        return response()->json(['hidangan' => $hidangan]);
     }
     public function showLimitKategori($id)
     {
         $hidangan = Hidangan::where('kategori_hidangan',$id)->limit(4)->get();
-        return response()->json(['result' => $hidangan]);
+        return response()->json(['hidangan' => $hidangan]);
     }
 
     /**
