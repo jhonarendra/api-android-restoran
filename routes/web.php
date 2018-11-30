@@ -23,6 +23,10 @@ Route::group(['prefix'=>'pelanggan'], function(){
 	Route::post('register', 'PelangganController@register');
 });
 
+Route::group(['prefix'=>'hidangan'], function(){
+	Route::post('hidangan','HidanganController@menubaru');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

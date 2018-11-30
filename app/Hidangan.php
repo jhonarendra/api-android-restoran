@@ -11,6 +11,9 @@ class Hidangan extends Model
      *
      * @var array
      */
+    protected $fillable = [
+    	'nama_hidangan','deskripsi_hidangan','harga_hidangan','kategori_hidangan','foto_hidangan',
+    ];
     protected $table = 'tb_hidangan';
     
 }

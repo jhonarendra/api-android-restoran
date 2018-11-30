@@ -13,6 +13,49 @@ class HidanganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // fungsi insert menu baru
+    public function menubaru(Request $request){
+        $validator = Validator::make($request->all(),[
+            'nama_hidangan' => 'required',
+            'deskripsi_hidangan' => 'required',
+            'harga_hidangan' => 'required',
+            'kategori_hidangan' => 'required',
+            'foto_hidangan' => 'required',
+        ]);
+            // data validator untuk proses validasi data 
+            //if success
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'gagal tambah data'
+            ]);
+            // if not 
+        } else {
+            Hidangan::create([
+                'nama_hidangan' => $request->nama_pelanggan,
+                'deskripsi_hidangan' => $request->deskripsi_hidangan,
+                'harga_hidangan' => $request->harga_hidangan,
+                'kategori_hidangan' => $request->kategori_hidangan,
+                'foto_hidangan'=>$request->foto_hidangan
+            ]);
+            // respon dalam bentuk json
+            return response()->json([
+                'success' => true,
+                'message' => 'data sudah masuk'
+            ]);
+        }
+    }
+
+    
+
+   
+
+        
+    
+
+
+
     public function index()
     {
         return response()->json([
