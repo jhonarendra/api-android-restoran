@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Admin;
+use Validator;
 
 class AdminController extends Controller
 {
@@ -43,10 +45,9 @@ class AdminController extends Controller
 
     public function index()
     {   
-        return response()->json([
+        return \response()->json([
             'result' => Admin::all()
         ]);
-        //
     }
 
     /**
