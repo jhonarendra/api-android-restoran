@@ -24,7 +24,12 @@ Route::group(['prefix'=>'pelanggan'], function(){
 });
 
 Route::group(['prefix'=>'hidangan'], function(){
-	Route::post('hidangan','HidanganController@menubaru');
+	Route::post('menubaru','HidanganController@menubaru');
+});
+
+Route::resource('admin', 'AdminController');
+Route::group(['prefix'=>'admin'], function(){
+	Route::post('login','AdminController@login');
 });
 
 Route::get('/', function () {

@@ -35,7 +35,7 @@ class AdminController extends Controller
             $success = false;
 
         }
-        return \response()->json([
+        return response()->json([
             'success' =>$success,
             'admin' =>$admin
         ]);
@@ -43,7 +43,7 @@ class AdminController extends Controller
 
     public function index()
     {   
-        return \response()->json([
+        return response()->json([
             'result' => Admin::all()
         ]);
         //
@@ -74,7 +74,7 @@ class AdminController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function show($id)
     {
