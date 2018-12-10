@@ -42,6 +42,8 @@ class PelangganController extends Controller
 		]);
     }
 
+    
+    // fungsi register bukan ya ini john ?
     public function register(Request $request){
     	$validator = Validator::make($request->all(),[
             'nama_pelanggan' => 'required',
@@ -49,7 +51,8 @@ class PelangganController extends Controller
             'username_pelanggan' => 'required|unique:tb_pelanggan',
             'password_pelanggan' => 'required'
         ]);
-
+        // hasil jsonnya bakalan diubah ?
+        // yang ini nanti ada hubungannya sama android studio di value.java 
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
