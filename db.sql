@@ -73,11 +73,11 @@ CREATE TABLE `tb_komentar` (
   PRIMARY KEY (`id_komentar`),
   KEY `tb_komentar_id_pelanggan_foreign` (`id_pelanggan`),
   CONSTRAINT `tb_komentar_id_pelanggan_foreign` FOREIGN KEY (`id_pelanggan`) REFERENCES `tb_pelanggan` (`id_pelanggan`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `tb_komentar` */
 
-insert  into `tb_komentar`(`id_komentar`,`id_pelanggan`,`isi_komentar`,`created_at`,`updated_at`) values (1,1,'Aplikasinya bagus mudah digunakan. Saya jadi tahu semua menu yang ada di restoran','2018-11-14 07:10:19','2018-11-14 07:10:19');
+insert  into `tb_komentar`(`id_komentar`,`id_pelanggan`,`isi_komentar`,`created_at`,`updated_at`) values (3,3,'Keren bro','2018-11-14 07:10:19','2018-11-14 07:10:19'),(4,3,'tes dari hp','2018-11-18 04:16:47','2018-11-18 04:16:47'),(6,10,'tes dulu','2018-12-21 19:33:57','2018-12-21 19:33:57');
 
 /*Table structure for table `tb_pegawai` */
 
@@ -112,12 +112,27 @@ CREATE TABLE `tb_pelanggan` (
   `foto_pelanggan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `status` enum('Aktif','Dihapus') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_pelanggan`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `tb_pelanggan` */
 
-insert  into `tb_pelanggan`(`id_pelanggan`,`nama_pelanggan`,`email_pelanggan`,`username_pelanggan`,`password_pelanggan`,`foto_pelanggan`,`created_at`,`updated_at`) values (1,'Putu Jhonarendra','jhonarendra@gmail.com','jhonarendra','f80cdc281e09fb8f69607830dd9586c4',NULL,'2018-11-14 07:10:18','2018-11-14 07:10:18'),(2,'his','hus','hus','ee4b742d5fc2159c78cd15cef9d238d1',NULL,'2018-11-15 12:02:47','2018-11-15 12:02:47'),(3,'jho','jho','jho','1427e904d3da3b984e2cd6e82d97d631',NULL,'2018-11-15 12:06:09','2018-11-15 12:06:09');
+insert  into `tb_pelanggan`(`id_pelanggan`,`nama_pelanggan`,`email_pelanggan`,`username_pelanggan`,`password_pelanggan`,`foto_pelanggan`,`created_at`,`updated_at`,`status`) values (1,'Putu Jhonarendra2','jhonarendra2@gmail.com','jhonarendra2','f80cdc281e09fb8f69607830dd9586c4',NULL,'2018-11-14 07:10:18','2018-12-21 19:52:56','Aktif'),(2,'lalala','lalalal@ks.c','lalala','9aa6e5f2256c17d2d430b100032b997c',NULL,'2018-11-15 12:02:47','2018-12-21 10:24:58','Aktif'),(3,'johnsom','johnsom','johnsom','1427e904d3da3b984e2cd6e82d97d631',NULL,'2018-11-15 12:06:09','2018-12-21 19:24:13','Aktif'),(4,'jon','jon','jon','37ba7d73de6e6191b41c717b35661a9e',NULL,'2018-12-21 04:31:11','2018-12-21 04:31:11','Aktif'),(5,'koko','koko','koko','37f525e2b6fc3cb4abd882f708ab80eb',NULL,'2018-12-21 04:37:13','2018-12-21 04:37:13','Aktif'),(6,'kokoooo','kokooo@maila.c','koko9oo','37f525e2b6fc3cb4abd882f708ab80eb',NULL,'2018-12-21 04:41:33','2018-12-21 04:41:33','Aktif'),(7,'skiaiaja','sjjaia@js.c','sjiaoaa','8027e3a276f96b801ea200a6fb93ec83',NULL,'2018-12-21 04:52:38','2018-12-21 04:52:38','Aktif'),(8,'joaikaka','kaoaoaka92@ska.d','ksoa9aa','f990dd53b298110173cc579135450c41',NULL,'2018-12-21 05:01:46','2018-12-21 05:01:46','Aktif'),(9,'ksksoaia82','sjjsisia82@sjis.xks','sjjsiwiwiw82','6d8ebd5a6615d8a20cc40b39a3137b14',NULL,'2018-12-21 05:02:59','2018-12-21 05:02:59','Aktif'),(10,'jonjon','jonjon@jsoss.dk','jonjon','b7b0ae5532585411f12c2b90a5509f56',NULL,'2018-12-21 19:26:04','2018-12-21 19:40:14','Dihapus');
+
+/*Table structure for table `tb_token` */
+
+DROP TABLE IF EXISTS `tb_token`;
+
+CREATE TABLE `tb_token` (
+  `id_token` int(10) NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_token` */
 
 /*Table structure for table `users` */
 
