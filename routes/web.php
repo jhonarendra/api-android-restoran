@@ -17,7 +17,9 @@ Route::get('hidangan/set/limit', 'HidanganController@menuLimit');
 
 Route::resource('komentar', 'KomentarController');
 Route::group(['prefix'=>'pelanggan'], function(){
-	Route::resource('', 'PelangganController');
+	Route::get('', 'PelangganController@index');
+	Route::get('{id}', 'PelangganController@show');
+	Route::put('{id}', 'PelangganController@update');
 	// http://jhonarendra/progmob-api/public/hidangan/Burger
 	Route::post('login', 'PelangganController@login');
 	Route::post('register', 'PelangganController@register');
@@ -31,6 +33,11 @@ Route::resource('admin', 'AdminController');
 Route::group(['prefix'=>'admin'], function(){
 	Route::post('login','AdminController@login');
 });
+
+
+Route::post('fcm', 'FCMController@insertToken');
+Route::get('sendfcm', 'FCMController@sendPushNotification');
+
 
 Route::get('/', function () {
     return view('welcome');

@@ -59,6 +59,7 @@ class PelangganController extends Controller
                 'message' => 'Gagal menambahkan data'
             ]);
         } else {
+            $pelanggan = null;
         	Pelanggan::create([
         	    'nama_pelanggan' => $request->nama_pelanggan,
         	    'email_pelanggan' => $request->email_pelanggan,
@@ -67,7 +68,6 @@ class PelangganController extends Controller
         	]);
         	return response()->json([
                 'success' => true,
-                'message' => 'Berhasil menambahkan data'
             ]);
         }
 
@@ -110,7 +110,16 @@ class PelangganController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Pelanggan::where('id_pelanggan', $id)->get();
+
+        $i = 0;
+        foreach ($data as $key) {
+            $pelanggan[0] = $key;
+            $i++;
+        }
+    	return response()->json([
+            'pelanggan' => $pelanggan,
+        ]);
     }
 
     /**
@@ -133,7 +142,15 @@ class PelangganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	Pelanggan::where('id_pelanggan', $id)->update([
+    	    'nama_pelanggan' => $request->nama_pelanggan,
+    	    'email_pelanggan' => $request->email_pelanggan,
+    	    'username_pelanggan' => $request->username_pelanggan
+
+    	]);
+    	return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**

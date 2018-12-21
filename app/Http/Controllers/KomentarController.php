@@ -86,7 +86,25 @@ class KomentarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'isi_komentar' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false
+            ]);
+        } else {
+        	Komentar::where('id_komentar', $id)->update([
+        		'isi_komentar' => $request->isi_komentar
+        	]);
+            // Komentar::update([
+            //     'id_pelanggan' => $request->id_pelanggan,
+            //     'isi_komentar' => $request->isi_komentar,
+            // ]);
+            return response()->json([
+                'success' => true
+            ]);
+        }
     }
 
     /**
