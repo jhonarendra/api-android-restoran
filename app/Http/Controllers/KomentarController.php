@@ -98,6 +98,8 @@ class KomentarController extends Controller
     public function destroy($id)
     {
         Komentar::where('id_komentar', $id)->delete();
-        return response()->json(['success' => true]);
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
