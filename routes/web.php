@@ -20,6 +20,7 @@ Route::group(['prefix'=>'pelanggan'], function(){
 	Route::get('', 'PelangganController@index');
 	Route::get('{id}', 'PelangganController@show');
 	Route::put('{id}', 'PelangganController@update');
+	Route::delete('{id}', 'PelangganController@destroy');
 	// http://jhonarendra/progmob-api/public/hidangan/Burger
 	Route::post('login', 'PelangganController@login');
 	Route::post('register', 'PelangganController@register');
@@ -42,3 +43,5 @@ Route::get('sendfcm', 'FCMController@sendPushNotification');
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('tes','KomentarController@sendPushNotification');

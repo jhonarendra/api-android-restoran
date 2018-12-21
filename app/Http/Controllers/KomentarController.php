@@ -52,7 +52,41 @@ class KomentarController extends Controller
             return response()->json([
                 'success' => true
             ]);
+            // $this->sendPushNotification($title, $message);
         }
+    }
+
+    public function sendPushNotification(/*$title, $message*/){
+      $url = 'https://fcm.googleapis.com/fcm/send';
+      $title="HALOO";
+      $message="Inibodymessagenya";
+      $fields = array (
+              'registration_ids' => array (
+                      "d-lXURdftII:APA91bEAyjpdX75Qngcl7ZzDLKWoVpAsbgwxKVh_ttUSD6j1Zixl3mhhygWqH9sBLCW2y_8o8XvI4Abne679bGniZPkzpyp7fOI32qNXtpiUu8wYAX9n9hNZmPIivSz-ELlTg9i83pyf",
+                      
+              ),
+              'data' => array (
+                      "title" => $title,
+                      "message" => $message
+              )
+      );
+      $fields = json_encode ( $fields );
+
+      $headers = array (
+              'Authorization: key=' . "AAAADtdgGVg:APA91bESK-YASd1Qpxd644DdbxAX1DshlRTtyKSB-v3_sGt01BbaQYdJqe7UVI5HBLcKmOGx_-h48_i-AdFockKV3ZRKeXnZi1el6ciDZAGwPlZbcnM8nMaicqTKRo0b2T84hzJVzmHJ ",
+              'Content-Type: application/json'
+      );
+
+      $ch = curl_init ();
+      curl_setopt ( $ch, CURLOPT_URL, $url );
+      curl_setopt ( $ch, CURLOPT_POST, true );
+      curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+      curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+      curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+      $result = curl_exec ( $ch );
+      echo $result;
+      curl_close ( $ch );
     }
 
     /**

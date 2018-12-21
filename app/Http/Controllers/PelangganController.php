@@ -18,7 +18,7 @@ class PelangganController extends Controller
     	$username_pelanggan = $request->username_pelanggan;
     	$password_pelanggan = md5($request->password_pelanggan);
 
-    	$row = Pelanggan::where('username_pelanggan', $username_pelanggan)->where('password_pelanggan', $password_pelanggan)->exists();
+    	$row = Pelanggan::where('username_pelanggan', $username_pelanggan)->where('password_pelanggan', $password_pelanggan)->where('status', '!=', 'Dihapus')->exists();
     	$rows = $row['exists'];
 
         $pelanggan = null;
@@ -161,6 +161,11 @@ class PelangganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pelanggan::where('id_pelanggan', $id)->update([
+            'status' => 'Dihapus'
+        ]);
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }

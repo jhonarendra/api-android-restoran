@@ -51,42 +51,33 @@ class FCMController extends Controller
 
     
     public function sendPushNotification(Request $request){
-    	$url = 'https://fcm.googleapis.com/fcm/send';
-    	$fields = array(
-    		'registration_ids' => $request->token,
-    		'data' => $message
-    	);
-    	$headers = array(
-    		'Authorization:key = YOUR_KEY',
-    		'Content-Type: aplication/json'
-    	);
+      $url = 'https://fcm.googleapis.com/fcm/send';
+      $fields = array (
+              'registration_ids' => array (
+                      "",
+                      ""
+              ),
+              'data' => array (
+                      "title" => $title,
+                      "message" => $message
+              )
+      );
+      $fields = json_encode ( $fields );
 
-    	$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);  
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
-		$result = curl_exec($ch);
-	    if ($result === FALSE) {
-	       die('Curl failed: ' . curl_error($ch));
-	    }
-		curl_close($ch);
-		   return $result;
-		}
+      $headers = array (
+              'Authorization: key=' . "AAAADtdgGVg:APA91bESK-YASd1Qpxd644DdbxAX1DshlRTtyKSB-v3_sGt01BbaQYdJqe7UVI5HBLcKmOGx_-h48_i-AdFockKV3ZRKeXnZi1el6ciDZAGwPlZbcnM8nMaicqTKRo0b2T84hzJVzmHJ",
+              'Content-Type: application/json'
+      );
 
-		$token = FCM::all();
+      $ch = curl_init ();
+      curl_setopt ( $ch, CURLOPT_URL, $url );
+      curl_setopt ( $ch, CURLOPT_POST, true );
+      curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+      curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+      curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
 
-		while ($row = mysqli_fetch_assoc($result)) {
-			$tokens[] = $row["Token"];
-		}
-
-		$message = array("message" => " FCM PUSH NOTIFICATION TEST MESSAGE");
-		$message_status = send_notification($tokens, $message);
-    	return response()->json([
-		    'message_status' => $message_status
-		]);
+      $result = curl_exec ( $ch );
+      echo $result;
+      curl_close ( $ch );
     }
 }
