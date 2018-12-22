@@ -27,11 +27,14 @@ Route::group(['prefix'=>'pelanggan'], function(){
 });
 
 Route::group(['prefix'=>'hidangan'], function(){
+	Route::put('{id}', 'HidanganController@update');
+	Route::delete('{id}', 'HidanganController@destroy');
 	Route::post('menubaru','HidanganController@menubaru');
 });
 
-Route::resource('admin', 'AdminController');
+
 Route::group(['prefix'=>'admin'], function(){
+	Route::resource('', 'AdminController');
 	Route::post('login','AdminController@login');
 });
 

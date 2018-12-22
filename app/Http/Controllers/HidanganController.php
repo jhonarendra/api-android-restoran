@@ -33,7 +33,7 @@ class HidanganController extends Controller
             // if not 
         } else {
             Hidangan::create([
-                'nama_hidangan' => $request->nama_pelanggan,
+                'nama_hidangan' => $request->nama_hidangan,
                 'deskripsi_hidangan' => $request->deskripsi_hidangan,
                 'harga_hidangan' => $request->harga_hidangan,
                 'kategori_hidangan' => $request->kategori_hidangan,
@@ -132,7 +132,11 @@ class HidanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Hidangan::where('id_hidangan', $id)->update([
+            'nama_hidangan' => $request->nama_hidangan,
+            'harga_hidangan' => $request->harga_hidangan,
+            'deskripsi_hidangan' => $request->deskripsi_hidangan
+        ]);
     }
 
     /**
@@ -143,6 +147,12 @@ class HidanganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Hidangan::where('id_hidangan', $id)->update([
+            'status' => 'Dihapus'
+        ]);
+        return response()->json([
+            'success' => true               
+        ]);
+
     }
 }

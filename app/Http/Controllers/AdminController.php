@@ -45,7 +45,7 @@ class AdminController extends Controller
 
     public function index()
     {   
-        return \response()->json([
+        return response()->json([
             'result' => Admin::all()
         ]);
     }
